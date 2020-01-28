@@ -1,18 +1,21 @@
 <template>
-    <b-card-group columns>
-        <b-card
-                v-for="gif in gifs"
-                :key="gif.id"
-                :img-src="gif.images.fixed_width.url"
-                :img-alt="gif.title">
-            <b-card-text>
-                <a :href="gif.url" target="_blank">{{gif.title}}</a>
-            </b-card-text>
-        </b-card>
-    </b-card-group>
+    <div>
+        <b-card-group columns>
+            <b-card
+                    v-for="gif in gifs"
+                    :key="gif.id"
+                    :img-src="gif.images.fixed_width.url"
+                    :img-alt="gif.title">
+                <b-card-text>
+                    <a :href="gif.url" target="_blank">{{gif.title}}</a>
+                </b-card-text>
+            </b-card>
+        </b-card-group>
+    </div>
 </template>
 
 <script>
+    /* eslint-disable no-console */
     import axios from "axios";
 
     const GIPHY_URL = "https://api.giphy.com/v1/gifs";
@@ -23,7 +26,8 @@
         components: {},
         data() {
             return {
-                gifs: []
+                gifs: [],
+                term: ''
             }
         },
         mounted() {
@@ -32,8 +36,13 @@
                 .then(res => {
                     this.gifs = res.data.data
                 })
+                .catch(err => {
+                    console.log(err)
+                })
         },
-        methods: {}
+        methods: {
+
+        }
     }
 </script>
 
