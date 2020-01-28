@@ -1,13 +1,12 @@
 <template>
     <div>
-        <b-form inline class="my-5 d-flex justify-content-start">
+        <div class="my-5 d-flex justify-content-start">
             <b-input
                     id="inline-form-input-name"
                     class="mb-2 mr-sm-2 mb-sm-0"
-                    placeholder="Search Giphy"/>
-            <b-button variant="outline-success">Go</b-button>
-        </b-form>
-
+                    placeholder="Search Giphy" v-model="term" v-on:keyup.enter="searchGiphy()"/>
+            <b-button variant="outline-success" @click.prevent="searchGiphy()">Go</b-button>
+        </div>
         <b-card-group columns>
             <b-card
                     v-for="gif in gifs"
@@ -50,7 +49,20 @@
                 })
         },
         methods: {
+            searchGiphy() {
+                if (!this.term) {
+                    return
+                }
 
+                axios
+                    .get(`${GIPHY_URL}/search?api_key=${API_KEY}&q=${this.term}&limit=20`)
+                    .then(res => {
+                        this.gifs = res.data.data
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            }
         }
     }
 </script>
