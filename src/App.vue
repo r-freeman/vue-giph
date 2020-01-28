@@ -1,14 +1,20 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-  </div>
+  <b-container>
+    <b-row>
+      <b-col>
+        <GiphyViewer />
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
+import GiphyViewer from "./components/GiphyViewer";
 
 export default {
   name: 'app',
   components: {
+    GiphyViewer
   }
 }
 </script>
