@@ -1,5 +1,13 @@
 <template>
     <div>
+        <b-form inline class="my-5 d-flex justify-content-start">
+            <b-input
+                    id="inline-form-input-name"
+                    class="mb-2 mr-sm-2 mb-sm-0"
+                    placeholder="Search Giphy"/>
+            <b-button variant="outline-success">Go</b-button>
+        </b-form>
+
         <b-card-group columns>
             <b-card
                     v-for="gif in gifs"
@@ -27,7 +35,8 @@
         data() {
             return {
                 gifs: [],
-                term: ''
+                term: "",
+                error: false
             }
         },
         mounted() {
